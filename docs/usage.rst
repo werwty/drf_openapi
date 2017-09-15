@@ -107,3 +107,22 @@ Support for error status codes is provided through the use of :code:`Meta` class
            }
 
 In later iteration, I will add support for sample error response.
+
+5. Change schema view permissions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default the schema view permission is set to staff only. This can be changed by configuring the
+`DOC_SCHEMA_PERMISSION_DECORATOR` variable in your project's `settings.py` file.
+
+`DOC_SCHEMA_PERMISSION_DECORATOR` is expected be an import path to a decorator function.
+
+.. code:: python
+    # In settings.py
+
+    def no_doc_auth_decorator(view_func):
+        """
+        Decorator for views that does not need Authentication
+        """
+        return view_func
+
+    DOC_SCHEMA_PERMISSION_DECORATOR = 'myproject.app.settings.no_doc_auth_decorator'
